@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Pulseboard service health dashboard" />
+    <title>Pulseboard — Service health at a glance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="nav shell">
+      <a class="brand" href="#top" aria-label="Pulseboard home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        Pulseboard
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#metrics">Metrics</a>
+        <a class="button button-dark" href="/api/health">API health</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero shell">
+        <div class="eyebrow"><span class="status-dot"></span> All systems operational</div>
+        <h1>Know what is healthy<br />before users notice.</h1>
+        <p>Pulseboard turns service telemetry into a focused status view for teams that want signal without dashboard noise.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#services">View service health</a>
+          <a class="button button-light" href="/api/metrics">Explore the API</a>
+        </div>
+      </section>
+
+      <section id="metrics" class="metrics shell" aria-label="Platform metrics">
+        <article><span>UPTIME</span><strong id="uptime">—</strong><small>Last 30 days</small></article>
+        <article><span>REQUESTS</span><strong id="requests">—</strong><small>Monthly traffic</small></article>
+        <article><span>LATENCY</span><strong id="latency">—</strong><small>Global median</small></article>
+        <article><span>INCIDENTS</span><strong id="incidents">—</strong><small>Active now</small></article>
+      </section>
+
+      <section class="workspace shell">
+        <div class="section-heading">
+          <div>
+            <span class="mono-label">LIVE OVERVIEW</span>
+            <h2>One view. Every critical service.</h2>
+          </div>
+          <p>Live API data keeps the dashboard synchronized with backend health.</p>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="traffic-card">
+            <div class="card-heading">
+              <div><span class="mono-label">REQUEST VOLUME</span><h3>Traffic is steady</h3></div>
+              <span class="trend">+12.4%</span>
+            </div>
+            <div id="traffic-chart" class="chart" aria-label="Request traffic chart"></div>
+            <div class="chart-axis"><span>08:00</span><span>12:00</span><span>16:00</span><span>Now</span></div>
+          </article>
+
+          <article class="summary-card">
+            <span class="mono-label">CURRENT STATUS</span>
+            <div class="score">100<span>%</span></div>
+            <p>All monitored services are responding within their expected thresholds.</p>
+            <div class="pulse-line"><span></span></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="services" class="services shell">
+        <div class="section-heading compact">
+          <div><span class="mono-label">SERVICE MATRIX</span><h2>Operational across the stack.</h2></div>
+          <span id="last-updated" class="updated">Loading live data…</span>
+        </div>
+        <div id="service-list" class="service-list" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer class="shell">
+      <span>Pulseboard demo</span>
+      <a href="https://github.com/hersaintel">Built by @hersaintel</a>
+    </footer>
+  </body>
+</html>
